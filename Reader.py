@@ -9,6 +9,8 @@ while True:
     prev.pop()
     now_txt = open(input_file,'r').read()
     now = now_txt.split("\n")
+    if len(prev) <= 1 :
+        print now_txt
     now.pop()
     new = []
     gate = False
