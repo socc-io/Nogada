@@ -1,0 +1,41 @@
+<html><head>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js">
+  </script>
+  </head>
+  <body>
+    <h3>봇에게 보내기</h3>
+    <textarea id="chat_room" style="width:100%" rows=1>#채팅방 이름</textarea>
+    <textarea id="input" style="width:100%" rows=10>#봇에게 하고싶은 말을 적으세요 </textarea>
+    <h3>봇으로부터 응답</h3>
+    <textarea id="output" style="width:100%" rows=10></textarea>
+  </body>
+<script>
+set_output = function(result){
+   pval = $("#output").val();
+   $("#output").val(pval + result);
+   $("#output").scrollTop($("#output")[0].scrollHeight);
+}
+
+send_input = function(){
+   if(! $("#input").val().length > 0){
+      return;
+   }
+   var inp_data = {"chat_room": $("#chat_room").val(), "text" : $("#input").val()}
+   $("#input").val("");
+   $.ajax({
+   type : "POST",
+   url : "/bot",
+   contentType: 'application/json;charset=UTF-8',
+   data : JSON.stringify(inp_data,null,'\t'),
+   success:function(result){
+   console.log(result);
+   set_output(result);}});
+}
+
+$("#output").blur(function(e) {
+   $("#output").val("");
+});
+setInterval(send_input,1000);
+</script>
+</html>
+
