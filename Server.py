@@ -13,7 +13,7 @@ bot_room = {
 t_cache = {'SOCC' : []}
 def filter_text(chat_room, text):
     spd_cache = t_cache[chat_room]
-    spd_text = text.split("\n")[:30]
+    spd_text = text.split("\n")[-30:]
     mrg_text = []
     last_line = ""
     for line in spd_text:
