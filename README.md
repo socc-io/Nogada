@@ -1,6 +1,8 @@
 # Nogada
 Chatting app bridge using macro
 
+![Nogada](https://github.com/socc-io/Nogada/raw/master/nogada.png)
+
 ### 실행방법 
 
     $ python Server.py
